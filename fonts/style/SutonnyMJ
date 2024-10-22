@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'SutonnyMJ';
+    src: url('../file/SutonnyMJ/SutonnyMJ-Bold.eot');
+    src: url('../file/SutonnyMJ/SutonnyMJ-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../file/SutonnyMJ/SutonnyMJ-Bold.woff2') format('woff2'),
+         url('../file/SutonnyMJ/SutonnyMJ-Bold.woff') format('woff'),
+         url('../file/SutonnyMJ/SutonnyMJ-Bold.ttf')  format('truetype'),
+         url('../file/SutonnyMJ/SutonnyMJ-Bold.svg#SutonnyMJ') format('svg');
+}
