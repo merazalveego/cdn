@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Utilities</title>
+    <link rel="stylesheet" href="./ChatGPT/css/style.css">
+</head>
+<body>
+    <h1>JavaScript Utilities</h1>
+
+    <!-- Copy Text Example -->
+    <h2>Copy Text Example</h2>
+    <p id="textToCopy">This is the text to copy.</p>
+    <button onclick="copyText('textToCopy')">Copy Text</button>
+    <script src="js/copyText.js"></script>
+
+    <!-- Countdown Timer Example -->
+    <h2>Countdown Timer Example</h2>
+    <p id="timer">Time left: </p>
+    <script src="js/countdown.js"></script>
+    <script>startCountdown(600, 'timer');</script>
+
+    <!-- Lazy Load Image Example -->
+    <h2>Lazy Load Image Example</h2>
+    <img class="lazy" data-src="https://via.placeholder.com/600x400" alt="Lazy Image">
+    <script src="js/lazyLoad.js"></script>
+
+    <!-- Dark Mode Toggle Example -->
+    <h2>Dark Mode Example</h2>
+    <button id="darkModeBtn" onclick="toggleDarkMode('darkModeBtn')">Switch to Dark Mode</button>
+    <script src="js/darkMode.js"></script>
+
+    <!-- Form Validation Example -->
+    <h2>Form Validation Example</h2>
+    <form id="signUpForm" onsubmit="return validateForm('signUpForm')">
+        <label>Username: <input type="text" name="username"></label>
+        <label>Email: <input type="email" name="email"></label>
+        <button type="submit">Sign Up</button>
+    </form>
+    <script src="js/formValidation.js"></script>
+</body>
+</html>
