@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Geomanist Medium';
+    src: url('../file/Geomanist/Geomanist-Medium.eot');
+    src: url('../file/Geomanist/Geomanist-Medium.eot?#iefix') format('embedded-opentype'),
+         url('../file/Geomanist/Geomanist-Medium.woff2') format('woff2'),
+         url('../file/Geomanist/Geomanist-Medium.woff') format('woff'),
+         url('../file/Geomanist/Geomanist-Medium.ttf')  format('truetype'),
+         url('../file/Geomanist/Geomanist-Medium.svg#Geomanist Medium') format('svg');
+}
