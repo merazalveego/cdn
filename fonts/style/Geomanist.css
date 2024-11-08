@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Geomanist';
+    src: url('../file/Geomanist/Geomanist-Book.eot');
+    src: url('../file/Geomanist/Geomanist-Book.eot?#iefix') format('embedded-opentype'),
+         url('../file/Geomanist/Geomanist-Book.woff2') format('woff2'),
+         url('../file/Geomanist/Geomanist-Book.woff') format('woff'),
+         url('../file/Geomanist/Geomanist-Book.ttf')  format('truetype'),
+         url('../file/Geomanist/Geomanist-Book.svg#Geomanist Book') format('svg');
+}
