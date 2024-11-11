@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Full-Screen Camera</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .controls {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .controls label {
+            color: white;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .controls input[type="range"] {
+            transform: rotate(270deg);
+            width: 150px;
+        }
+        .zoom-label {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="video" autoplay playsinline></video>
+        <div class="controls">
+            <div class="zoom-control">
+                <label for="zoomControl">Zoom</label>
+                <input type="range" id="zoomControl" min="1" max="200" value="1">
+                <div class="zoom-label" id="zoomLabel">Zoom: 1x</div>
+            </div>
+            <div class="frame-rate-control">
+                <label for="frameRateControl">Frame Rate</label>
+                <input type="range" id="frameRateControl" min="1" max="60" value="30">
+            </div>
+            <button id="flashToggle">Toggle Flash</button>
+        </div>
+    </div>
+
+    <script>
+        const videoElement = document.getElementById('video');
+        const zoomControl = document.getElementById('zoomControl');
+        const zoomLabel = document.getElementById('zoomLabel');
+        const frameRateControl = document.getElementById('frameRateControl');
+        const flashToggle = document.getElementById('flashToggle');
+        let stream = null;
+
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: { exact: "environment" },
+                        frameRate: { ideal: 30, max: 60 }
+                    }
+                });
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error('Error accessing the back camera:', error);
+            }
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        }
+
+        zoomControl.addEventListener('input', (event) => {
+            const zoomLevel = event.target.value;
+            videoElement.style.transform = `scale(${zoomLevel})`;
+            zoomLabel.textContent = `Zoom: ${zoomLevel}x`;
+        });
+
+        frameRateControl.addEventListener('input', (event) => {
+            stopCamera();
+            const frameRate = event.target.value;
+            startCamera({ frameRate: { ideal: frameRate, max: frameRate } });
+        });
+
+        flashToggle.addEventListener('click', async () => {
+            const track = stream.getVideoTracks()[0];
+            const capabilities = track.getCapabilities();
+            if (capabilities.torch) {
+                const settings = track.getSettings();
+                await track.applyConstraints({
+                    advanced: [{ torch: !settings.torch }]
+                });
+            }
+        });
+
+        startCamera();
+    </script>
+</body>
+</html>
